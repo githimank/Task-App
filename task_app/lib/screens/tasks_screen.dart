@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:task_app/blocs/bloc_exports.dart';
 import 'package:task_app/models/tasks.dart';
 import 'package:task_app/screens/widgets/tasks_list.dart';
-
 import 'add_tasks_screen.dart';
 
 class TasksScreen extends StatefulWidget {
@@ -20,7 +19,10 @@ class _TasksScreenState extends State<TasksScreen> {
               child: Padding(
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: AddTaskScreen(),
+                child: BlocProvider(
+                  create: (context) => TasksBloc(),
+                  child: const AddTaskScreen(),
+                ),
               ),
             )));
   }
