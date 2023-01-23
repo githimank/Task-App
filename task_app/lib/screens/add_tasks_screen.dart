@@ -3,11 +3,16 @@ import 'package:task_app/models/tasks.dart';
 
 import '../blocs/bloc_exports.dart';
 
-class AddTaskScreen extends StatelessWidget {
+class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController textEditingController = TextEditingController();
@@ -46,6 +51,7 @@ class AddTaskScreen extends StatelessWidget {
                 onPressed: () {
                   var task = Task(title: textEditingController.text);
                   BlocProvider.of<TasksBloc>(context).add(AddTask(task: task));
+
                   // context.read<TasksBloc>().add(AddTask(task: task));
                   Navigator.pop(context);
                 },
